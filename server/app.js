@@ -1,11 +1,11 @@
 const express = require('express')
-const router = express.Router()
-const UserController = require('./controllers/userController')
-const errorHandlers = require('../middlewares/errorHandlers')
+const app = express()
+const router = require('./routers')
+const cors = require('cors')
 
-router.post('/register', UserController.register)
-router.post('/login', UserController.login)
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(router)
 
-router.use(errorHandlers)
-
-module.exports = router
+module.exports = app
