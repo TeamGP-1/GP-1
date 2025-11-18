@@ -46,8 +46,15 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+  User.beforeValidate((user) => {
+    if (!user.username || (typeof user.username === 'string' && user.username.trim() === '')) {
+      user.username = user.email;
+    }
+  });
+
   User.beforeCreate((user) => {
     user.password = hashPassword(user.password)
+    if (!user.username) user.username = user.email
   });
   return User;
 };
