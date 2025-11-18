@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       unique: {msg: "Email is already registered"},
       validate: {
         notNull: {msg: "Email is required"},
-        notEmpty: {msg: "Email is required"}
+        notEmpty: {msg: "Email is required"},
+        isEmail: {msg: "Invalid email format"}
       }
     },
     password: {

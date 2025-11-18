@@ -1,3 +1,5 @@
+const { comparePassword } = require('../helpers/bcrypt')
+const { signToken } = require('../helpers/jwt')
 const {User} = require('../models')
 
 class UserController {
@@ -29,7 +31,7 @@ class UserController {
 
             if (!user) throw { name: "LoginError" };
 
-            if (!compare(password, user.password)) {
+            if (!comparePassword(password, user.password)) {
                 throw { name: "LoginError" }
             };
 
