@@ -1,3 +1,3 @@
-const url = "http://localhost:3000";
+const url = "https://server.nathanael.web.id";
 
 export default url;
