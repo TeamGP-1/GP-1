@@ -11,7 +11,7 @@
 - Back-End
   - Bikin Login sama testing di postman
   - Bikin Register sama testing di postman
-  > Untuk package nanti di cek lagi!
+    > Untuk package nanti di cek lagi!
 - Front-End
   - Bikin Tampilan Register/Login
   - Bikin Tampilan halaman utama
@@ -30,3 +30,4 @@
 5. Jangan sampe gak sengaja ke push ke main atau langsung ke development.
 6. Tiap Bikin fitur, boleh ditambahin comment biar gampang ngeceknya.
 7. Untuk Setup awal aku udah bikinin dan install package yang diperluin
+8. Jalanin npm i kalau baru clone
