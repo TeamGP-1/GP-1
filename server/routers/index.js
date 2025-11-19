@@ -7,8 +7,6 @@ const errorHandlers = require('../middlewares/errorHandlers')
 router.post('/register', UserController.register)
 router.post('/login', UserController.login)
 
-// Not sure when we'll use this...
-// router.use(authentication)
 
 router.use(errorHandlers)
 

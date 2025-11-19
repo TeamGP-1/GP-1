@@ -1,45 +1,46 @@
 const errorHandlers = (error, req, res, next) => {
-    console.log(error)
+  let status = 500;
+  let message = "Internal server error";
 
-    let status = 500
-    let message = "Internal server error"
+  if (
+    error.name == "SequelizeValidationError" ||
+    error.name == "SequelizeUniqueConstraintError"
+  ) {
+    status = 400;
+    message = error.errors[0].message;
+  }
 
-    if (error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
-        status = 400
-        message = error.errors[0].message
-    }
+  if (error.name == "NoEmail") {
+    status = 400;
+    message = "Email is required";
+  }
 
-    if (error.name == 'NoEmail') {
-        status = 400
-        message = "Email is required"
-    }
+  if (error.name == "NoPassword") {
+    status = 400;
+    message = "Password is required";
+  }
 
-    if (error.name == 'NoPassword') {
-        status = 400
-        message = "Password is required"
-    }
+  if (error.name == "LoginError") {
+    status = 401;
+    message = "Invalid email/password";
+  }
 
-    if (error.name == 'LoginError') {
-        status = 401
-        message = "Invalid email/password"
-    }
+  if (error.name == "Unauthorized" || error.name == "JsonWebTokenError") {
+    status = 401;
+    message = "Invalid token";
+  }
 
-    if (error.name == 'Unauthorized' || error.name == 'JsonWebTokenError') {
-        status = 401
-        message = "Invalid token"
-    }
+  if (error.name == "Forbidden") {
+    status = 403;
+    message = "Unauthorized";
+  }
 
-    if (error.name == 'Forbidden') {
-        status = 403
-        message = "Unauthorized"
-    }
+  if (error.name == "NotFound") {
+    status = 404;
+    message = "Data not found";
+  }
 
-    if (error.name == 'NotFound') {
-        status = 404
-        message = "Data not found"
-    }
+  res.status(status).json({ message });
+};
 
-    res.status(status).json({message})
-}
-
-module.exports = errorHandlers
+module.exports = errorHandlers;
