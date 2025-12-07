@@ -28,7 +28,6 @@ export default function GameRoom() {
       return;
     }
 
-    // Request current room state
     socket.emit("getRoomState", { roomId });
 
     socket.on("playerJoined", (data) => {
@@ -146,7 +145,7 @@ export default function GameRoom() {
       });
     }
 
-    // Hitung progress
+
     const progress = Math.min((inputWords.length / words.length) * 100, 100);
     setCurrentProgress(progress);
 
